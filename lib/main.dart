@@ -34,9 +34,12 @@ class _HomePageState extends State<HomePage> {
 
   ///[_toggleFullscreen] включает/отключает полноэкранный режим браузера
   void _toggleFullscreen() {
+    // Проверяем открыт ли полноэкранный режим браузера
     if (document.fullscreenElement == null) {
+      // Если нет то открываем
       document.documentElement?.requestFullscreen();
     } else {
+      // Если да то закрываем
       document.exitFullscreen();
     }
   }
@@ -76,11 +79,14 @@ class _HomePageState extends State<HomePage> {
   void _registerFactory() {
     platformViewRegistry.registerViewFactory("imageView", (int id,
         {Object? param}) {
+      // Создаём тег img
       final img = document.createElement("img");
+      // Атрибуты к тегу img
       img.attributes = {
         "src": urlImage,
         "alt": "Изображение",
       };
+      // Добавляем стили к тегу img
       img.style.width = "100%";
       img.style.height = "100%";
       img.style.objectFit = "cover";
@@ -156,6 +162,7 @@ class _HomePageState extends State<HomePage> {
                 color: _isShowMenu ? Colors.black.withValues(alpha: 0.7) : null,
               ),
             ),
+            // Меню над кнопкой
             Positioned(
               bottom: 80,
               right: 20,
@@ -189,6 +196,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+        //Кнопка в правом нижнем углу экрана
         floatingActionButton: FloatingActionButton(
           onPressed: _openMenu,
           child: Icon(Icons.add),
